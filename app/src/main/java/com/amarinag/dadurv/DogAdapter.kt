@@ -1,25 +1,28 @@
 package com.amarinag.dadurv
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.amarinag.dadurv.databinding.ItemDogBinding
 
 class DogAdapter : ListAdapter<Dog, DogAdapter.DogViewHolder>(DogItemCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.item_dog, parent, false)
-        return DogViewHolder(view)
+        val binding = ItemDogBinding.inflate(inflater, parent, false)
+        return DogViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: DogViewHolder, position: Int) {
-        TODO("Not yet implemented")
+        val dog = getItem(position)
+        holder.binding.tvName.text = dog.name
+        holder.binding.tvDescription.text = dog.description
+        holder.binding.tvAge.text = dog.age.toString()
     }
 
-    class DogViewHolder(view: View) : RecyclerView.ViewHolder(view)
+    class DogViewHolder(val binding: ItemDogBinding) : RecyclerView.ViewHolder(binding.root)
 
 }
 

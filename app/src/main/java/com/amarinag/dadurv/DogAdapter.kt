@@ -7,8 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 
-class DogAdapter : ListAdapter<Dog, DogAdapter.DogViewHolder>() {
-
+class DogAdapter : ListAdapter<Dog, DogAdapter.DogViewHolder>(DogItemCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogViewHolder {
         val inflater = LayoutInflater.from(parent.context)

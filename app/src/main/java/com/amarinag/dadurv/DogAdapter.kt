@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.amarinag.dadurv.databinding.ItemDogBinding
 
-class DogAdapter(private val listener: DogItemListener) :
+class DogAdapter(private val listener: (Dog) -> Unit) :
     ListAdapter<Dog, DogAdapter.DogViewHolder>(DogItemCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogViewHolder {
@@ -21,7 +21,7 @@ class DogAdapter(private val listener: DogItemListener) :
         holder.binding.tvName.text = dog.name
         holder.binding.tvDescription.text = dog.description
         holder.binding.tvAge.text = dog.age.toString()
-        holder.binding.root.setOnClickListener { listener.onDogClickListener(dog) }
+        holder.binding.root.setOnClickListener { listener(dog) }
     }
 
     class DogViewHolder(val binding: ItemDogBinding) : RecyclerView.ViewHolder(binding.root)

@@ -11,7 +11,7 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        val dogId = intent.extras?.getString("dogId")
+        val dogId = intent.getExtras()?.getString("dogId")
 
         if (dogId == null) {
             finish()

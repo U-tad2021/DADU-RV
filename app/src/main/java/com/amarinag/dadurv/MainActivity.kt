@@ -7,18 +7,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.amarinag.dadurv.databinding.ActivityMainBinding
 
 
-interface DogItemListener {
-    fun onDogClickListener(dog: Dog)
-}
-
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private val listener: DogItemListener = object : DogItemListener {
-        override fun onDogClickListener(dog: Dog) {
-            navigateToDetail(dog)
-        }
-    }
-    private val adapter = DogAdapter(listener)
+    private val adapter = DogAdapter { navigateToDetail(it) }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)

@@ -20,8 +20,8 @@ class DetailActivity : AppCompatActivity() {
         val dog: Dog? = dogs.firstOrNull { it.id == dogId }
 
         if (dog == null) {
-            finish()
             Toast.makeText(this, "no dog found", Toast.LENGTH_SHORT).show()
+            finish()
             return
         }
         populateDog(dog)

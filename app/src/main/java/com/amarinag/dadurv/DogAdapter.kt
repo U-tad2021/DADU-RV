@@ -7,7 +7,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.amarinag.dadurv.databinding.ItemDogBinding
 
-class DogAdapter : ListAdapter<Dog, DogAdapter.DogViewHolder>(DogItemCallback()) {
+class DogAdapter(private val listener: DogItemListener) :
+    ListAdapter<Dog, DogAdapter.DogViewHolder>(DogItemCallback()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DogViewHolder {
         val inflater = LayoutInflater.from(parent.context)
@@ -20,6 +21,7 @@ class DogAdapter : ListAdapter<Dog, DogAdapter.DogViewHolder>(DogItemCallback())
         holder.binding.tvName.text = dog.name
         holder.binding.tvDescription.text = dog.description
         holder.binding.tvAge.text = dog.age.toString()
+        holder.binding.root.setOnClickListener { listener.onDogClickListener(dog) }
     }
 
     class DogViewHolder(val binding: ItemDogBinding) : RecyclerView.ViewHolder(binding.root)

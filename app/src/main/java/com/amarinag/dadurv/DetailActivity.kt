@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.amarinag.dadurv.databinding.ActivityDetailBinding
+import com.bumptech.glide.Glide
 
 class DetailActivity : AppCompatActivity() {
     private lateinit var binding: ActivityDetailBinding
@@ -31,6 +32,6 @@ class DetailActivity : AppCompatActivity() {
         binding.tvName.text = dog.name
         binding.tvDescription.text = dog.description
         binding.tvAge.text = dog.age.toString()
-
+        Glide.with(this).load(dog.imageUrl).into(binding.ivDog)
     }
 }

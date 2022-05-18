@@ -1,6 +1,7 @@
 package com.amarinag.dadurv
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.amarinag.dadurv.databinding.ActivityDetailBinding
 
@@ -12,11 +13,24 @@ class DetailActivity : AppCompatActivity() {
         setContentView(binding.root)
         val dogId = intent.extras?.getString("dogId")
 
+        if (dogId == null) {
+            finish()
+            return
+        }
         val dog: Dog? = dogs.firstOrNull { it.id == dogId }
 
-        binding.tvName.text = dog?.name
-        binding.tvDescription.text = dog?.description
-        binding.tvAge.text = dog?.age.toString()
+        if (dog == null) {
+            finish()
+            Toast.makeText(this, "no dog found", Toast.LENGTH_SHORT).show()
+            return
+        }
+        populateDog(dog)
+    }
+
+    private fun populateDog(dog: Dog) {
+        binding.tvName.text = dog.name
+        binding.tvDescription.text = dog.description
+        binding.tvAge.text = dog.age.toString()
 
     }
 }

@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.amarinag.dadurv.databinding.ItemDogBinding
+import com.bumptech.glide.Glide
 
 class DogAdapter(private val listener: (Dog) -> Unit) :
     ListAdapter<Dog, DogAdapter.DogViewHolder>(DogItemCallback()) {
@@ -21,6 +22,7 @@ class DogAdapter(private val listener: (Dog) -> Unit) :
         holder.binding.tvName.text = dog.name
         holder.binding.tvDescription.text = dog.description
         holder.binding.tvAge.text = dog.age.toString()
+        Glide.with(holder.itemView).load(dog.imageUrl).into(holder.binding.ivDog)
         holder.binding.root.setOnClickListener { listener(dog) }
     }
 
